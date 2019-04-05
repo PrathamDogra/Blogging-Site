@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!-- This means every file that extends base.html includes the head.html -->
+    {% include "head.html" %}  
+   <body>
+        {% include 'header.html' %}
+        {% block content %}
+        {% endblock content %}
+        
+        {% include 'scripts.html' %}
+        {% include 'footer.html' %}
+
+
+   </body>
+    
+
+
+</html>
