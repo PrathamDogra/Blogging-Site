@@ -8,7 +8,12 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-7">
-            <h1>Pratham's Blog</h1><a href="#" class="hero-link">Discover More</a>
+           {% if user.is_authenticated %}
+            <h1>Welcome {{ user.username }}</h1>
+            {% else %}
+            <h1>Log in / Sign in to contribute</h1>
+            {% endif %}
+           
           </div>
         </div><a href=".intro" class="continue link-scroll"><i class="fa fa-long-arrow-down"></i> Scroll Down</a>
       </div>
@@ -47,7 +52,7 @@
                 </header>
                 <p>{{ obj.overview }} </p>
                 <footer class="post-footer d-flex align-items-center"><a href="#" class="author d-flex align-items-center flex-wrap">
-                    <div class="avatar"><img src="{{ obj.author.profile_pic.url}}" alt="..." class="img-fluid"></div>
+                    <div class="avatar"><img src="{{ obj.author.profile_picture.url }}" alt="..." class="img-fluid"></div>
                     <div class="title"><span>{{ obj.author }}</span></div></a>
                   <div class="date"><i class="icon-clock"></i> {{ obj.timestamp|timesince }} ago</div>
                   <div class="comments"><i class="icon-comment"></i>{{ obj.comment_count}}</div>
@@ -59,6 +64,7 @@
           <div class="image col-lg-5"><img src="{{obj.thumbnail.url}}" alt="..."></div>
           {% endif %}
         </div>
+        <br/>
         {% endfor %}
        
       </div>
