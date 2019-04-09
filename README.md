@@ -13,4 +13,4 @@ This django web application helps user to Read, post and create blogs. So feel f
 
 ### 1.Main Page
 
-![alte text]
+![alt text](https://github.com/PrathamDogra/Blogging-Site/blob/master/screenshots/mainpage.png)
