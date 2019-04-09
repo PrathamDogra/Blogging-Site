@@ -26,6 +26,7 @@
                   </div>
                   <div>
                     <a href="{% url 'post-update' id=post.id %}">Update</a>
+                    
                     <a href="{% url 'post-delete' id=post.id %}">Delete</a>
                   </div>
                 </div>
@@ -117,6 +118,8 @@
                     </div>
                   </form>
                 </div>
+                {% else %}
+                <a href="{% url 'account_login' %}" class="btn btn-primary">Login to comment</a>
                 {% endif %}
               </div>
             </div>
