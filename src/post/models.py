@@ -18,7 +18,15 @@ class Category(models.Model):
     def __str__(self):
         return self.title
 
+#To count the number of comments
+class Comment(models.Model):
+     user = models.ForeignKey( User, on_delete=models.CASCADE)
+     timestamp = models.DateTimeField(auto_now_add=True)
+     content = models.TextField()
+     post = models.ForeignKey('Post',related_name='comments', on_delete=models.CASCADE)
 
+     def __str__(self):
+        return self.user.username
 
 
 class Post(models.Model):
@@ -26,10 +34,10 @@ class Post(models.Model):
     overview = models.TextField()
     #To add the time of post creation
     timestamp = models.DateTimeField(auto_now_add=True)
-    #To count the number of counts
-    comment_count = models.IntegerField(default = 0)
-    #To count the comments
-    view_count = models.IntegerField(default = 0)
+    
+    
+    
+    
     #Author field
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
     thumbnail = models.ImageField()
@@ -38,10 +46,6 @@ class Post(models.Model):
     featured = models.BooleanField(default=True)
     previous_post = models.ForeignKey('self', related_name='previous', on_delete=models.SET_NULL, blank=True, null= True)
     next_post = models.ForeignKey('self', related_name='next', on_delete=models.SET_NULL, blank=True, null= True)
-
-    
-
-    
     
     def __str__(self):
         return self.title
@@ -64,15 +68,23 @@ class Post(models.Model):
     @property
     def get_comments(self):
         return self.comments.all().order_by('-timestamp')
+    
+    @property
+    def view_count(self):
+        return PostView.objects.filter(post=self).count()
+    
+    @property
+    def comment_count(self):
+        return Comment.objects.filter(post=self).count()
+
 
     
     
-class Comment(models.Model):
-     user = models.ForeignKey( User, on_delete=models.CASCADE)
-     timestamp = models.DateTimeField(auto_now_add=True)
-     content = models.TextField()
-     post = models.ForeignKey(Post,related_name='comments', on_delete=models.CASCADE)
 
-     def __str__(self):
+#To count the number of views
+class PostView(models.Model):
+    user =  models.ForeignKey(User, on_delete=models.CASCADE)
+    post = models.ForeignKey('Post', on_delete=models.CASCADE)
+
+    def __str__(self):
         return self.user.username
-    
