@@ -43,6 +43,11 @@ INSTALLED_APPS = [
     'marketing',
     'tinymce',
     'crispy_forms',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -62,7 +67,7 @@ ROOT_URLCONF = 'blog.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [TEMPLATE_DIR],
+        'DIRS': [TEMPLATE_DIR, os.path.join(BASE_DIR, 'templates', 'allauth')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -87,6 +92,16 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+#Django aullauth
+AUTHENTICATION_BACKENDS = (
+    
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+    
+)
 
 
 # Password validation
@@ -167,3 +182,5 @@ STATICFILES_DIRS=[
 VENV_PATH = os.path.dirname(BASE_DIR)
 STATIC_ROOT=os.path.join(VENV_PATH,'static_root')
 MEDIA_ROOT= os.path.join(VENV_PATH,'media_root')
+
+SITE_ID = 1
