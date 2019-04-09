@@ -11,3 +11,6 @@ This django web application helps user to Read, post and create blogs. So feel f
 
 ## Screenshots
 
+### 1.Main Page
+
+![alte text]
