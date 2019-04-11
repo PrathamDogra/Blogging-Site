@@ -1,6 +1,6 @@
 # Blogging-Site
 
-This django web application helps user to Read, post and create blogs. So feel free to clone this repository, play with and we together will make this project better.
+This django web application helps user to Read, post and create blogs. So feel free to clone this repository, play with it and we together will make this project better.
 Go to **src** folder by running cd src in the terminal and run **python manage.py runserver** command 
 
 ## Packages used
